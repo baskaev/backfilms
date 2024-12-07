@@ -29,6 +29,13 @@ func main() {
 		return c.JSON(http.StatusOK, movies)
 	})
 
+	// Обработчик для маршрута /api
+	e.GET("/api", func(c echo.Context) error {
+		return c.JSON(http.StatusOK, map[string]string{
+			"message": "API is working!",
+		})
+	})
+
 	// Запускаем сервер
 	e.Logger.Fatal(e.Start(":8081"))
 }
