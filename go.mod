@@ -3,7 +3,7 @@ module backfilms
 go 1.23.4
 
 require (
-	github.com/baskaev/db v0.0.1
+	github.com/baskaev/db v0.0.8
 	github.com/labstack/echo/v4 v4.13.0
 )
 
