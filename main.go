@@ -94,7 +94,7 @@ func main() {
 		// Преобразуем параметр `year` в массив
 		var years []string
 		if yearParam != "" {
-			years = strings.Split(yearParam, ",")
+			years = strings.Split(yearParam, ",") // Разделяем строку на массив годов
 		}
 
 		// Парсим `minRating` в float
