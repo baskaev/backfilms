@@ -7,6 +7,7 @@ WORKDIR /app
 # Копируем go.mod и go.sum, чтобы установить зависимости
 COPY go.mod go.sum ./
 RUN go mod download
+RUN go mod tidy
 
 # Копируем исходный код проекта
 COPY . .
