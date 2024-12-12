@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -119,6 +120,7 @@ func main() {
 	})
 
 	e.GET("/api/AddTaskImdbParser", func(c echo.Context) error {
+		fmt.Println("AddTaskImdbParser called")
 		task := datab.Task{
 			TaskName:    "imdb_parser",
 			IsTimerUsed: true,
