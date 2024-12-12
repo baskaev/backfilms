@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"net/http"
 	"strconv"
 	"strings"
@@ -115,6 +116,22 @@ func main() {
 
 		// Возвращаем результат
 		return c.JSON(http.StatusOK, movies)
+	})
+
+	e.GET("/api/AddTaskImdbParser", func(c echo.Context) error {
+		task := datab.Task{
+			TaskName:    "imdb_parser",
+			IsTimerUsed: true,
+			RunInTime:   sql.NullTime{},
+			Priority:    1,
+			ParamsJson:  `{"query": "The Movie", "years": ["2000", "2005", "2010"], "minRating": 6.5}`,
+			DoneAt:      sql.NullTime{},
+		}
+		newID, err := datab.AddTask(task)
+		if err != nil {
+			return c.JSON(http.StatusInternalServerError, map[string]string{"error": err.Error()})
+		}
+		return c.JSON(http.StatusOK, map[string]interface{}{"message": "Task added successfully!", "task_id": newID})
 	})
 
 	// напиши обработчик для /api/AddMovie?code=tt123456&title=The+Movie&rating=5.0&year=2021&image_link=http://example.com/image.jpg
