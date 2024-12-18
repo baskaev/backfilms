@@ -9,6 +9,7 @@ import (
 
 	"github.com/baskaev/db/datab"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
@@ -19,6 +20,9 @@ func main() {
 
 	// Создаем экземпляр Echo
 	e := echo.New()
+
+	// Используем CORS middleware
+	e.Use(middleware.CORS())
 
 	// Определяем маршруты
 	e.GET("/", func(c echo.Context) error {
